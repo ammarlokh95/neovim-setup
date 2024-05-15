@@ -13,10 +13,10 @@ keymap.set("n", "<leader>+", "<C-a>", { noremap = true, silent = true, desc = "I
 keymap.set("n", "<leader>-", "<C-x>", { noremap = true, silent = true, desc = "Decrement number" })
 
 -- window management
-keymap.set("n", "<leader>sv", ":vsplit<CR>", { noremap = true, silent = true, desc = "Vertical split" })
-keymap.set("n", "<leader>sh", ":split<CR>", { noremap = true, silent = true, desc = "Horizontal split" })
-keymap.set("n", "<leader>se", "C-W>=", { noremap = true, silent = true, desc = "Equalize splits" })
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { noremap = true, silent = true, desc = "Close current splits" })
+keymap.set("n", "<leader>wv", ":vsplit<CR>", { noremap = true, silent = true, desc = "Vertical split" })
+keymap.set("n", "<leader>wh", ":split<CR>", { noremap = true, silent = true, desc = "Horizontal split" })
+keymap.set("n", "<leader>we", "<C-W>", { noremap = true, silent = true, desc = "Equalize splits" })
+keymap.set("n", "<leader>wx", "<cmd>close<CR>", { noremap = true, silent = true, desc = "Close current splits" })
 
 -- tab management
 keymap.set("n", "<leader>to", ":tabnew<CR>", { noremap = true, silent = true, desc = "New tab" })
