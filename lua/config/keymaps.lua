@@ -4,13 +4,11 @@
 
 local keymap = vim.keymap
 
-keymap.set("i", "jk", "<Esc>", { noremap = true, desc = "jk to <Esc>" })
-keymap.set("v", "jk", "<Esc>", { noremap = true, desc = "jk to <Esc>" })
+keymap.set({ "i", "v", "n" }, "jk", "<Esc>", { noremap = true, desc = "jk to <Esc>" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { noremap = true, silent = true, desc = "Clear highlights" })
-
 -- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { noremap = true, silent = true, desc = "Increment number" })
-keymap.set("n", "<leader>-", "<C-x>", { noremap = true, silent = true, desc = "Decrement number" })
+keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+keymap.set("n", "<leader>-", "<C-x>", { silent = true, desc = "Decrement number" })
 
 -- window management
 keymap.set("n", "<leader>wv", ":vsplit<CR>", { noremap = true, silent = true, desc = "Vertical split" })

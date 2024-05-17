@@ -19,16 +19,14 @@ opt.autoindent = true
 opt.smartcase = true
 opt.ignorecase = true
 
-opt.cursorline = true
-
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 
 opt.backspace = { "indent", "eol", "start" }
 
-opt.clipboard:append("unnamedplus")
+opt.clipboard = "unnamedplus"
 
 opt.splitright = true
-
 opt.splitbelow = true
+opt.undofile = true
