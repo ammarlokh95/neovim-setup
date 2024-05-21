@@ -12,3 +12,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+-- Disable autoformat for c# files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "cs" },
+  callback = function()
+    ---@diagnostic disable-next-line: inject-field
+    vim.b.autoformat = false
+  end,
+})
