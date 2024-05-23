@@ -4,7 +4,8 @@
 
 local keymap = vim.keymap
 
-keymap.set({ "i", "v", "n" }, "jk", "<Esc>", { noremap = true, desc = "jk to <Esc>" })
+keymap.set({ "i", "v", "n" }, "jk", "<Esc>", { desc = "jk to <Esc>" })
+keymap.set("t", "jk", "<C-\\><C-n>", { desc = "terminal mode jk to <C-\\><C-n>" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { noremap = true, silent = true, desc = "Clear highlights" })
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
