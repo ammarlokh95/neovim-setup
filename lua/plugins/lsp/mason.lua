@@ -1,7 +1,6 @@
 return {
   "williamboman/mason.nvim",
-  dependencies = { "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",},
+  dependencies = { "williamboman/mason-lspconfig.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim" },
   config = function()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
@@ -25,7 +24,7 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "prettier", -- prettier formatter
+        "prettierd", -- prettier formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
         "black", -- python formatter

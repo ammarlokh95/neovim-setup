@@ -25,10 +25,11 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "black" },
-      javascript = { "prettier" },
-      typescript = { "prettier" },
-      scss = { "prettier" },
-      css = { "prettier" },
+      html = { "prettierd" },
+      javascript = { "prettierd" },
+      typescript = { "prettierd" },
+      scss = { "prettierd" },
+      css = { "prettierd" },
       cs = { "csharpier" },
     },
     -- The options you set here will be merged with the builtin formatters.
