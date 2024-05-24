@@ -28,3 +28,10 @@ keymap.set(
   "<cmd>tabnew %<CR>",
   { noremap = true, silent = true, desc = "Open current buffer in new tab" }
 )
+
+-- attaches multple split screens to scroll together
+keymap.set("n", "<leader>wb", ":set scrollbind<CR>", { desc = "Scrollbind current buffer" })
+keymap.set("n", "<leader>wnb", ":set noscrollbind<CR>", { desc = "Disable scrollbind" })
+
+keymap.set("n", "oo", "o<Esc>", { desc = "Insert new line below" })
+keymap.set("n", "OO", "O<Esc>", { desc = "Insert new line above" })
