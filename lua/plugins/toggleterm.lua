@@ -7,7 +7,7 @@ return {
     toggle_term.setup({
       size = 20,
       open_mapping = "<leader>td",
-      insert_mappings = "true",
+      insert_mappings = false,
       direction = "horizontal",
       shell = sh,
     })
@@ -35,6 +35,11 @@ return {
       lazygit:toggle()
     end
 
-    vim.api.nvim_set_keymap("n", "<leader>ttg", "<cmd>lua Lazygit_toggle()<CR>", { noremap = true, silent = true })
+    vim.api.nvim_set_keymap(
+      "n",
+      "<leader>tlg",
+      "<cmd>lua Lazygit_toggle()<CR>",
+      { noremap = true, silent = true, desc = "Toggle lazygit" }
+    )
   end,
 }
