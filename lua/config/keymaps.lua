@@ -35,3 +35,5 @@ keymap.set("n", "<leader>wnb", ":set noscrollbind<CR>", { desc = "Disable scroll
 
 keymap.set("n", "oo", "o<Esc>", { desc = "Insert new line below" })
 keymap.set("n", "OO", "O<Esc>", { desc = "Insert new line above" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center cursor on page up" })
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor on page down" })

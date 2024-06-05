@@ -32,3 +32,5 @@ opt.splitbelow = true
 opt.undofile = true
 
 opt.cursorlineopt = "number"
+
+opt.scrolloff = 8
