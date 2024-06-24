@@ -25,5 +25,4 @@ return {
   init = function()
       vim.notify = require("notify")
     end
-  end,
 }
