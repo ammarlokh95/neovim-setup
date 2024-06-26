@@ -32,5 +32,6 @@ return {
         "eslint_d", -- eslint daemon
       },
     })
+    vim.keymap.set("n", "<leader>cm", ":Mason<cr>", { desc = "Mason" })
   end,
 }
