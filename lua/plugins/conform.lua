@@ -1,11 +1,11 @@
 return {
   "stevearc/conform.nvim",
   dependencies = { "mason.nvim" },
-  lazy = true,
+  event = { "BufReadPre", "BufNewFile" },
   cmd = "ConformInfo",
   keys = {
     {
-      "<leader>cF",
+      "<leader>cf",
       function()
         require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
       end,
