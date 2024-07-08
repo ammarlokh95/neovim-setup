@@ -15,7 +15,6 @@ return {
         "html",
         "cssls",
         "lua_ls",
-        "pyright",
         "omnisharp",
         "jsonls",
         "somesass_ls",
@@ -24,11 +23,8 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "prettierd", -- prettier formatter
+        "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "isort", -- python formatter
-        "black", -- python formatter
-        "pylint", -- python linter
         "eslint_d", -- eslint daemon
       },
     })
