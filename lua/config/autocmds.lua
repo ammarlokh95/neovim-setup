@@ -24,6 +24,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     ---@diagnostic disable-next-line: inject-field
     vim.b.autoformat = false
+    vim.b.shiftwidth = 4
+    vim.b.tabstop = 4
   end,
 })
 

@@ -1,6 +1,7 @@
 return {
   "renerocksai/telekasten.nvim",
   dependencies = { "nvim-telescope/telescope.nvim", "nvim-telekasten/calendar-vim" },
+  event = "lazy",
   config = function()
     local home = vim.fn.expand("C:/Users/alokhandwala/notes/")
     require("telekasten").setup({
