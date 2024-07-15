@@ -11,7 +11,6 @@ return {
     { "<leader>zd", "<cmd>Telekasten goto_today<CR>" },
     { "<leader>zz", "<cmd>Telekasten follow_link<CR>" },
     { "<leader>zn", "<cmd>Telekasten new_note<CR>" },
-    { "<leader>zc", "<cmd>Telekasten show_calendar<CR>" },
     { "<leader>zb", "<cmd>Telekasten show_backlinks<CR>" },
     { "<leader>zI", "<cmd>Telekasten insert_img_link<CR>" },
 

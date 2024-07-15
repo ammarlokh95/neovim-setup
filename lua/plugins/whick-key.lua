@@ -3,6 +3,15 @@ return {
   event = "VeryLazy",
   opts = {
     plugins = { spelling = true },
+    modes = {
+      n = true,
+      i = false,
+      x = true,
+      s = true,
+      o = false,
+      c = true,
+      t = false,
+    },
   },
   config = function(_, opts)
     local wk = require("which-key")

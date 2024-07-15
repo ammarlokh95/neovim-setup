@@ -19,13 +19,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Disable autoformat for c# files
+local fileType_group = vim.api.nvim_create_augroup("filetype_group", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = fileType_group,
   pattern = { "cs" },
   callback = function()
     ---@diagnostic disable-next-line: inject-field
     vim.b.autoformat = false
-    vim.b.shiftwidth = 4
-    vim.b.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.o.tabstop = 4
+  end,
+})
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = fileType_group,
+  pattern = { "*" },
+  callback = function()
+    ---@diagnostic disable-next-line: inject-field
+    vim.b.autoformat = true
+    vim.o.shiftwidth = 2
+    vim.o.tabstop = 2
   end,
 })
 

@@ -14,18 +14,6 @@ map.set("n", "<leader>we", "<C-W>", { noremap = true, silent = true, desc = "Equ
 map.set("n", "<leader>wx", "<cmd>close<CR>", { noremap = true, silent = true, desc = "Close current splits" })
 map.set("n", "<leader>ww", "<C-W>p", { desc = "Other Window", remap = true })
 
--- tab management
-map.set("n", "<leader>to", ":tabnew<CR>", { noremap = true, silent = true, desc = "New tab" })
-map.set("n", "<leader>tx", ":tabclose<CR>", { noremap = true, silent = true, desc = "Close tab" })
-map.set("n", "<leader>th", ":tabprev<CR>", { noremap = true, silent = true, desc = "Previous tab" })
-map.set("n", "<leader>tl", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab" })
-map.set(
-  "n",
-  "<leader>tf",
-  "<cmd>tabnew %<CR>",
-  { noremap = true, silent = true, desc = "Open current buffer in new tab" }
-)
-
 -- attaches multple split screens to scroll together
 map.set("n", "<leader>wb", ":set scrollbind<CR>", { desc = "Scrollbind current buffer" })
 map.set("n", "<leader>wnb", ":set noscrollbind<CR>", { desc = "Disable scrollbind" })
@@ -162,10 +150,10 @@ map.set("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map.set("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- tabs
-map.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map.set("n", "<leader><tab>L", "<cmd>tablast<cr>", { desc = "Last Tab" })
 map.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-map.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map.set("n", "<leader><tab>F", "<cmd>tabfirst<cr>", { desc = "First Tab" })
 map.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map.set("n", "<leader><tab>l", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map.set("n", "<leader><tab>h", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })

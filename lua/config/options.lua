@@ -62,7 +62,7 @@ opt.fillchars = {
 }
 opt.foldlevel = 99
 opt.foldmethod = "expr"
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.inccommand = "nosplit" -- preview incremental substitute
