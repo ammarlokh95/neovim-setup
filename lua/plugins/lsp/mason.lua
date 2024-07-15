@@ -15,7 +15,7 @@ return {
         "html",
         "cssls",
         "lua_ls",
-        "omnisharp",
+        "csharp_ls",
         "jsonls",
         "somesass_ls",
       },
