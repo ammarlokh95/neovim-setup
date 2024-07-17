@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "williamboman/mason.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
     "Decodetalkers/csharpls-extended-lsp.nvim",
   },

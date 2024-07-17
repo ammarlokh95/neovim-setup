@@ -3,13 +3,6 @@ return {
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-  --   "BufReadPre path/to/my-vault/**.md",
-  --   "BufNewFile path/to/my-vault/**.md",
-  -- },
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
@@ -21,6 +14,9 @@ return {
       {
         name = "personal",
         path = "~/vaults/personal",
+        overrides = {
+          notes_subdir = "0_Inbox",
+        },
       },
       {
         name = "work",
@@ -28,11 +24,27 @@ return {
       },
     },
 
-    notes_subdir = "0_Inbox",
+    daily_notes = {
+      date_format = "%a, %d, %m %Y",
+      alias_format = "%B %-d, %Y",
+      default_tags = { "daily-notes" },
+      template = nil,
+    },
     templates = {
       folder = "~/vaults/templates",
-      date_format = "%a, %d, %mmm %YYY",
+      date_format = "%a, %d, %m %Y",
       time_format = "%H:%M",
     },
+  },
+  keys = {
+    { "<leader>obn", "<cmd>ObsidianToday<cr>", desc = "New daily note" },
+    { "<leader>obd", "<cmd>ObsidianDailies<cr>", desc = "New daily note" },
+    { "<leader>obw", "<cmd>ObsidianWorkspace work<cr>", desc = "Obsidian work workspace" },
+    { "<leader>obp", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
+    { "<leader>obp", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
+    { "<leader>fon", "<cmd>ObsidianSearch<cr>", desc = "Search obsidian notes" },
+    { "<leader>fot", "<cmd>ObsidianTags<cr>", desc = "Search obsidian notes" },
+    { "<leader>obe", "<cmd>ObsidianExtractNote<cr>", mode = "x", desc = "Extract note" },
+    { "<leader>ob>", "<cmd>ObsidianLink<cr>", mode = "x", desc = "Extract note" },
   },
 }

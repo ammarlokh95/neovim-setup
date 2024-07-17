@@ -7,6 +7,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "issafalcon/neotest-dotnet",
   },
+  lazy = true,
   config = function()
     require("neotest").setup({
       adapters = {

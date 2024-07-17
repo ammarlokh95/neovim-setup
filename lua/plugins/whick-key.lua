@@ -17,7 +17,7 @@ return {
     local wk = require("which-key")
     wk.setup(opts)
     wk.add({
-      mode = { "n", "v" },
+      mode = { "n", "x" },
       { "<leader><tab>", group = "tabs" },
       { "<leader>b", group = "buffer" },
       { "<leader>c", group = "code" },
@@ -31,6 +31,7 @@ return {
       { "<leader>w", group = "windows" },
       { "<leader>x", group = "diagnostics/quickfix" },
       { "<leader>z", group = "telekasten" },
+      { "<leader>ob", group = "Obsidian" },
       { "[", group = "prev" },
       { "]", group = "next" },
       { "g", group = "goto" },
