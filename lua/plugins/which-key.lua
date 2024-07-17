@@ -31,7 +31,7 @@ return {
       { "<leader>w", group = "windows" },
       { "<leader>x", group = "diagnostics/quickfix" },
       { "<leader>z", group = "telekasten" },
-      { "<leader>ob", group = "Obsidian" },
+      { "<leader>o", group = "Obsidian" },
       { "[", group = "prev" },
       { "]", group = "next" },
       { "g", group = "goto" },
