@@ -43,9 +43,10 @@ return {
     { "<leader>ow", "<cmd>ObsidianWorkspace work<cr>", desc = "Obsidian work workspace" },
     { "<leader>op", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
     { "<leader>op", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
-    { "<leader>fon", "<cmd>ObsidianSearch<cr>", desc = "Search obsidian notes" },
-    { "<leader>fot", "<cmd>ObsidianTags<cr>", desc = "Search obsidian notes" },
+    { "<leader>off", "<cmd>ObsidianSearch<cr>", desc = "Search obsidian notes" },
+    { "<leader>oft", "<cmd>ObsidianTags<cr>", desc = "Search obsidian notes" },
     { "<leader>oe", "<cmd>ObsidianExtractNote<cr>", mode = "x", desc = "Extract note" },
-    { "<leader>o>", "<cmd>ObsidianLink<cr>", mode = "x", desc = "Extract note" },
+    { "<leader>o>", "<cmd>ObsidianLink<cr>", mode = "x", desc = "Search selected and link note" },
+    { "<leader>o]", "<cmd>ObsidianFollowLink<cr>", desc = "Follow a note reference" },
   },
 }
