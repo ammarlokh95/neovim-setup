@@ -1,4 +1,7 @@
 local map = vim.keymap
+-- Disable up and down arrows in insert mode
+map.set("i", "<Up>", "<Nop>")
+map.set("i", "<Down>", "<Nop>")
 
 map.set({ "i", "v", "n" }, "jk", "<Esc>", { desc = "jk to <Esc>" })
 map.set("t", "jk", "<C-\\><C-n>", { desc = "terminal mode jk to <C-\\><C-n>" })

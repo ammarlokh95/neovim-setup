@@ -41,11 +41,12 @@ return {
 
       -- The options you set here will be merged with the builtin formatters.
       -- You can also define any custom formatters here.
-      ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
+      ---@type table<string, table|fun(bufnr: integer): nil|table>
       formatters = {
         injected = { options = { ignore_errors = true } },
       },
     }
+
     require("conform").setup(opts)
   end,
 }
