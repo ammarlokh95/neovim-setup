@@ -19,6 +19,7 @@ return {
         "csharp_ls",
         "jsonls",
         "somesass_ls",
+        "zls",
       },
     })
 
