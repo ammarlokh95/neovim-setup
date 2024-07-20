@@ -3,14 +3,8 @@ return {
   event = "VeryLazy",
   opts = {
     plugins = { spelling = true },
-    modes = {
-      n = true,
-      i = false,
-      x = true,
-      s = true,
-      o = false,
-      c = true,
-      t = false,
+    triggers = {
+      { "<auto>", mode = "nixsoc" },
     },
   },
   config = function(_, opts)
