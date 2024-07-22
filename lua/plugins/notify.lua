@@ -12,6 +12,7 @@ return {
   opts = {
     stages = "static",
     timeout = 3000,
+    background_colour = "#000000",
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
     end,
@@ -23,6 +24,6 @@ return {
     end,
   },
   init = function()
-      vim.notify = require("notify")
-    end
+    vim.notify = require("notify")
+  end,
 }

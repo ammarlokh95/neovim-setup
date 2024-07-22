@@ -16,9 +16,9 @@ return {
         "html",
         "cssls",
         "lua_ls",
-        "csharp_ls",
         "jsonls",
         "somesass_ls",
+        "zls",
       },
     })
 
