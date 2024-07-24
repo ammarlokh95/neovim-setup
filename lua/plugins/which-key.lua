@@ -4,7 +4,7 @@ return {
   opts = {
     plugins = { spelling = true },
     triggers = {
-      { "<auto>", mode = "nixsoc" },
+      { "<auto>", mode = "nixso" },
     },
   },
   config = function(_, opts)
