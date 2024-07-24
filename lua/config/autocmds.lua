@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "^cs" },
   callback = function()
     ---@diagnostic disable-next-line: inject-field
+    print("Setting default filetype options")
     vim.b.autoformat = true
     vim.o.shiftwidth = 2
     vim.o.tabstop = 2
