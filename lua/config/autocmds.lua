@@ -27,13 +27,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     ---@diagnostic disable-next-line: inject-field
     print("Setting CSharp options")
     vim.b.autoformat = false
-    vim.o.shiftwidth = 4
-    vim.o.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
   end,
 })
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = fileType_group,
-  pattern = { "^cs" },
+  pattern = { "^(cs)" },
   callback = function()
     ---@diagnostic disable-next-line: inject-field
     print("Setting default filetype options")

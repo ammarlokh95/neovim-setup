@@ -34,6 +34,7 @@ return {
         scss = { "prettier" },
         css = { "prettier" },
         cpp = { "clang-format" },
+        cs = { "csharpier" },
       },
       -- Set the log level. Use `:ConformInfo` to see the location of the log file.
       log_level = vim.log.levels.ERROR,
