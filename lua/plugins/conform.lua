@@ -7,7 +7,7 @@ return {
     {
       "<leader>cf",
       function()
-        require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
+        require("conform").format({ timeout_ms = 3000 })
       end,
       mode = { "n", "v" },
       desc = "Format Injected Langs",
@@ -15,17 +15,22 @@ return {
   },
   config = function()
     local opts = {
-      -- LazyVim will use these options when formatting with the conform.nvim formatter
       format = {
         timeout_ms = 3000,
-        async = false, -- not recommended to change
-        quiet = false, -- not recommended to change
+        async = false,
+        quiet = false,
         lsp_format = "fallback",
       },
-      format_on_save = {
-        timeout_ms = 3000,
-        lsp_format = "fallback",
-      },
+      format_on_save = function()
+        if vim.bo.filetype == "cs" then
+          return {}
+        end
+        print("formatting: " .. vim.bo.filetype)
+        return {
+          timeout_ms = 3000,
+          lsp_format = "fallback",
+        }
+      end,
       formatters_by_ft = {
         lua = { "stylua" },
         html = { "prettier" },
