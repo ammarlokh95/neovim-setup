@@ -20,7 +20,6 @@ opt.smartcase = true
 opt.ignorecase = true
 
 opt.termguicolors = true
-opt.background = "dark"
 opt.signcolumn = "yes"
 
 opt.backspace = { "indent", "eol", "start" }
