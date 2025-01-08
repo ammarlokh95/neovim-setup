@@ -32,15 +32,3 @@ return {
     vim.cmd("colorscheme kanagawa")
   end,
 }
-
-local kanagawa = {
-  "rebelot/kanagawa.nvim",
-  name = "kanagawa",
-  priority = 1000,
-  config = function()
-    require("kanagawa").setup({})
-    vim.cmd("colorscheme kanagawa-wave")
-  end,
-}
-
-return kanagawa
