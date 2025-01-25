@@ -87,7 +87,8 @@ return {
       "<leader>onn",
       function()
         local title = vim.fn.input("Enter note title: ")
-        return "<cmd>ObsidianNewFromTemplate " .. title .. "<cr>"
+        vim.cmd("set ma")
+        vim.cmd("ObsidianNewFromTemplate " .. title .. "<cr>")
       end,
       desc = "Create a new note from template",
     },
