@@ -34,6 +34,26 @@ return {
       date_format = "%a, %d, %m %Y",
       time_format = "%H:%M",
     },
+
+    -- Optional, customize how note IDs are generated given an optional title.
+    ---@param title string|?
+    ---@return string
+    note_id_func = function(title)
+      -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+      -- In this case a note with the title 'My new note' will be given an ID that looks
+      -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+      local suffix = ""
+      if title ~= nil then
+        -- If title is given, transform it into valid file name.
+        suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+      else
+        -- If title is nil, just add 4 random uppercase letters to the suffix.
+        for _ = 1, 4 do
+          suffix = suffix .. string.char(math.random(65, 90))
+        end
+      end
+      return tostring(os.time()) .. "-" .. suffix
+    end,
     -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
     -- way then set 'mappings = {}'.
     mappings = {
@@ -62,13 +82,20 @@ return {
   },
   keys = {
     { "<leader>ol", ":lua require('obsidian')<cr>", desc = "Load obsidian.nvim" },
-    { "<leader>on", "<cmd>ObsidianToday<cr>", desc = "New daily note" },
-    { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "New daily note" },
+    { "<leader>ond", "<cmd>ObsidianToday<cr>", desc = "Create a new daily note" },
+    {
+      "<leader>onn",
+      function()
+        local title = vim.fn.input("Enter note title: ")
+        return "<cmd>ObsidianNewFromTemplate " .. title .. "<cr>"
+      end,
+      desc = "Create a new note from template",
+    },
+    { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Open a new daily note" },
     { "<leader>ow", "<cmd>ObsidianWorkspace work<cr>", desc = "Obsidian work workspace" },
     { "<leader>op", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
-    { "<leader>op", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
     { "<leader>off", "<cmd>ObsidianSearch<cr>", desc = "Search obsidian notes" },
-    { "<leader>oft", "<cmd>ObsidianTags<cr>", desc = "Search obsidian notes" },
+    { "<leader>oft", "<cmd>ObsidianTags<cr>", desc = "Search obsidian notes for tag" },
     { "<leader>oe", "<cmd>ObsidianExtractNote<cr>", mode = "x", desc = "Extract note" },
     { "<leader>o>", "<cmd>ObsidianLink<cr>", mode = "x", desc = "Search selected and link note" },
     { "<leader>o]", "<cmd>ObsidianFollowLink<cr>", desc = "Follow a note reference" },
