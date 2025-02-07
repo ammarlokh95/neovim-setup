@@ -92,6 +92,27 @@ return {
           capabilities = capabilities,
         })
       end,
+      ["csharp_ls"] = function()
+        -- configure csharp server (with special settings)
+        lspconfig["csharp_ls"].setup({
+          capabilities = capabilities,
+          cmd = { "csharpls" },
+          filetypes = { "csharp" },
+          root_dir = lspconfig.util.root_pattern("*.sln"),
+          handlers = {
+            ["textDocument/definition"] = require('csharpls_extended').handler,
+            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+          },
+          settings = {
+            csharp = {
+              format = {
+                enable = false,
+              },
+              semanticHighlighting = true,
+            },
+          },
+        })
+      end,
       ["lua_ls"] = function()
         -- configure lua server (with special settings)
         lspconfig["lua_ls"].setup({

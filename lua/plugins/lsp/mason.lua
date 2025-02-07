@@ -12,8 +12,9 @@ return {
       ensure_installed = {
         "angularls",
         "dockerls",
-        "tsserver",
+        "vtsls",
         "html",
+        "csharp_ls",
         "cssls",
         "lua_ls",
         "jsonls",
@@ -25,7 +26,7 @@ return {
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
-        "stylua", -- lua formatter
+        "stylua",   -- lua formatter
         "eslint_d", -- eslint daemon
       },
     })
