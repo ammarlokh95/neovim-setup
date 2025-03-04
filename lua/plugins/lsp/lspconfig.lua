@@ -96,12 +96,12 @@ return {
         -- configure csharp server (with special settings)
         lspconfig["csharp_ls"].setup({
           capabilities = capabilities,
-          cmd = { "csharpls" },
-          filetypes = { "csharp" },
+          cmd = { "csharp-ls" },
+          filetypes = { "cs" },
           root_dir = lspconfig.util.root_pattern("*.sln"),
           handlers = {
-            ["textDocument/definition"] = require('csharpls_extended').handler,
-            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+            ["textDocument/definition"] = require("csharpls_extended").handler,
+            ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
           },
           settings = {
             csharp = {
@@ -112,6 +112,7 @@ return {
             },
           },
         })
+        require("telescope").load_extension("csharpls_definition")
       end,
       ["lua_ls"] = function()
         -- configure lua server (with special settings)

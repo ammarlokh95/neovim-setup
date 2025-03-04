@@ -6,7 +6,6 @@ map.set("i", "<S-Up>", "<Nop>")
 map.set("i", "<S-Down>", "<Nop>")
 
 map.set({ "i", "v" }, "jk", "<Esc>", { desc = "jk to <Esc>" })
-map.set("t", "jk", "<C-\\><C-n>", { desc = "terminal mode jk to <C-\\><C-n>" })
 map.set("n", "<leader>nh", ":nohl<CR>", { noremap = true, silent = true, desc = "Clear highlights" })
 -- increment/decrement numbers
 map.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
