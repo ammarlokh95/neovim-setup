@@ -6,6 +6,7 @@ return {
     "williamboman/mason.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
     "Decodetalkers/csharpls-extended-lsp.nvim",
+    "artemave/workspace-diagnostics.nvim",
   },
   config = function()
     -- import lspconfig plugin
@@ -71,6 +72,15 @@ return {
 
         opts.desc = "Go to previous quickfix item"
         keymap.set("n", "<leader>cp", "<cmd>cprevious<CR>", opts) -- go to previous quickfix item
+      end,
+    })
+
+    vim.api.nvim_set_keymap("n", "<space>xw", "", {
+      noremap = true,
+      callback = function()
+        for _, client in ipairs(vim.lsp.buf_get_clients()) do
+          require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+        end
       end,
     })
 
