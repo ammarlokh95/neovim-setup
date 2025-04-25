@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     ---@diagnostic disable-next-line: inject-field
     print("Setting CSharp options")
-    vim.b.autoformat = false
+    --vim.b.autoformat = false
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4
   end,
