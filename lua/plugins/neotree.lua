@@ -5,13 +5,12 @@ return {
   lazy = true,
   keys = {
     {
-      "<leader>fE",
+      "<leader>e",
       function()
         require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
       end,
       desc = "Explorer NeoTree (cwd)",
     },
-    { "<leader>e", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
     { "<leader>E", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
     {
       "<leader>ge",
