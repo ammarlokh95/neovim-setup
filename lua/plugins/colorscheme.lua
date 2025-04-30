@@ -1,4 +1,4 @@
-return {
+local catppuccin = {
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
@@ -22,14 +22,31 @@ return {
     vim.cmd("colorscheme catppuccin")
   end,
 }
---
---
--- return {
---   "rebelot/kanagawa.nvim",
---   name = "kanagawa",
---   priority = 1000,
---   config = function()
---     require("kanagawa").setup({})
---     vim.cmd("colorscheme kanagawa")
---   end,
--- }
+
+local kanagawa = {
+  "rebelot/kanagawa.nvim",
+  name = "kanagawa",
+  priority = 1000,
+  config = function()
+    require("kanagawa").setup({})
+    vim.cmd("colorscheme kanagawa")
+  end,
+}
+
+local rosepine = {
+  "rose-pine/neovim",
+  name = "rose-pine",
+  config = function()
+    require("rose-pine").setup({
+      variant = "moon",
+      styles = {
+        bold = true,
+        italic = false,
+        transparency = false,
+      },
+    })
+    vim.cmd("colorscheme rose-pine")
+  end,
+}
+
+return rosepine

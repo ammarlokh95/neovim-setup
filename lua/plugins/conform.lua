@@ -27,7 +27,7 @@ return {
         end
         print("formatting: " .. vim.bo.filetype)
         return {
-          timeout_ms = 3000,
+          timeout_ms = 10000,
           lsp_format = "fallback",
         }
       end,
