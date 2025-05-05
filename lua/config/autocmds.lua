@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.tabstop = 4
   end,
 })
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = fileType_group,
   pattern = { "^(cs)" },
   callback = function()
