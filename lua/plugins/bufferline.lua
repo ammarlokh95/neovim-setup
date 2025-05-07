@@ -9,10 +9,8 @@ return {
     { "<leader>b>", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
     { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
     { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-    { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
-    { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+    { "[b", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
+    { "]b", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
   },
   opts = {
     options = {
@@ -30,6 +28,11 @@ return {
   },
   config = function(_, opts)
     require("bufferline").setup(opts)
+
+    -- Set up bufferline with custom highlights
+    local highlights = require("rose-pine.plugins.bufferline")
+    require("bufferline").setup({ highlights = highlights })
+
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
       callback = function()

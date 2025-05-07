@@ -1,7 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
- keys = {
+  keys = {
     {
       "<leader>,",
       "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
@@ -35,7 +35,11 @@ return {
     { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
     { "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
-    { "<leader>uC", ":lua require('telescope.builtin').colorscheme({ enable_preview = true })<cr>", desc = "Colorscheme with Preview" },
+    {
+      "<leader>uC",
+      ":lua require('telescope.builtin').colorscheme({ enable_preview = true })<cr>",
+      desc = "Colorscheme with Preview",
+    },
   },
   opts = function()
     local actions = require("telescope.actions")
@@ -74,13 +78,14 @@ return {
         mappings = {
           i = {
             ["<c-t>"] = open_with_trouble,
-            ["<a-t>"] = open_with_trouble,
-            ["<a-i>"] = find_files_no_ignore,
-            ["<a-h>"] = find_files_with_hidden,
+            ["<c-T>"] = open_with_trouble,
+            ["<c-i>"] = find_files_no_ignore,
+            ["<c-h>"] = find_files_with_hidden,
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-Up>"] = actions.cycle_history_prev,
             ["<C-f>"] = actions.preview_scrolling_down,
             ["<C-b>"] = actions.preview_scrolling_up,
+            ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
           },
           n = {
             ["q"] = actions.close,

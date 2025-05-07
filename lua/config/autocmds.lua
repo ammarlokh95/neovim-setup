@@ -18,15 +18,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Disable autoformat for c# files
+-- Set default options for c# files
 local fileType_group = vim.api.nvim_create_augroup("filetype_group", { clear = true })
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = fileType_group,
-  pattern = { "cs" },
+  pattern = { "*.cs" },
   callback = function()
     ---@diagnostic disable-next-line: inject-field
-    print("Setting CSharp options")
-    --vim.b.autoformat = false
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4
   end,
@@ -36,8 +34,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "^(cs)" },
   callback = function()
     ---@diagnostic disable-next-line: inject-field
-    print("Setting default filetype options")
-    vim.b.autoformat = true
     vim.o.shiftwidth = 2
     vim.o.tabstop = 2
   end,

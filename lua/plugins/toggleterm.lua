@@ -3,7 +3,7 @@ return {
   version = "*",
   config = function()
     local toggle_term = require("toggleterm")
-    local sh = vim.fn.has("win32") and "powershell" or vim.os.shell
+    local sh = vim.fn.has("win32") and "pwsh" or vim.os.shell
     toggle_term.setup({
       size = 20,
       open_mapping = "<leader>td",
@@ -41,5 +41,7 @@ return {
       "<cmd>lua Lazygit_toggle()<CR>",
       { noremap = true, silent = true, desc = "Toggle lazygit" }
     )
+    local highlights = require("rose-pine.plugins.toggleterm")
+    require("toggleterm").setup({ highlights = highlights })
   end,
 }
