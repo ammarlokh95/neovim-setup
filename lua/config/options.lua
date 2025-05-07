@@ -60,6 +60,7 @@ opt.fillchars = {
   eob = " ",
 }
 opt.foldlevel = 99
+opt.foldlevelstart = 99
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.grepformat = "%f:%l:%c:%m"
@@ -92,7 +93,7 @@ opt.updatetime = 2000 -- Save swap file and trigger CursorHold
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
-opt.wrap = true -- Disable line wrap
+opt.wrap = true -- enable line wrap
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
