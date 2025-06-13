@@ -122,7 +122,11 @@ return {
         keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
         opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        keymap.set("n", "<leader>rs", function()
+          vim.fn.printf("Restarting lsp...")
+          vim.lsp.stop_client(vim.lsp.get_clients())
+          vim.cmd("edit")
+        end, opts) -- mapping to restart lsp if necessary
 
         opts.desc = "Go to next quickfix item"
         keymap.set("n", "<leader>cn", "<cmd>cnext<CR>", opts) -- go to next quickfix item
