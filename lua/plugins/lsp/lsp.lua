@@ -17,16 +17,19 @@ return {
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    vim.lsp.config("*", { capabilities = capabilities })
-
-    mason.setup()
+    -- Mason setup
+    mason.setup({
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
+    })
     mason_lspconfig.setup({
       ensure_installed = {
         "angularls",
         "dockerls",
         "vtsls",
         "html",
-        "csharp_ls",
         "cssls",
         "lua_ls",
         "jsonls",
@@ -45,6 +48,21 @@ return {
       },
     })
 
+    -- LSP configs
+    vim.lsp.config("*", { capabilities = capabilities })
+    vim.lsp.config("roslyn", {
+      settings = {
+        ["csharp|inlay_hints"] = {
+          csharp_enable_inlay_hints_for_implicit_object_creation = true,
+          csharp_enable_inlay_hints_for_implicit_variable_types = true,
+        },
+        ["csharp|code_lens"] = {
+          dotnet_enable_references_code_lens = true,
+        },
+      },
+    })
+
+    -- Keymaps and other LSP settings
     vim.keymap.set("n", "<leader>cm", ":Mason<cr>", { desc = "Mason" })
 
     -- Change the Diagnostic symbols in the sign column (gutter)

@@ -40,6 +40,15 @@ return {
       ":lua require('telescope.builtin').colorscheme({ enable_preview = true })<cr>",
       desc = "Colorscheme with Preview",
     },
+    {
+      "<leader>en",
+      function()
+        require("telescope.builtins").find_files({
+          cwd = vim.fn.stdpath("config"),
+        })
+      end,
+      desc = "Edit Neovim Config",
+    },
   },
   opts = function()
     local actions = require("telescope.actions")
