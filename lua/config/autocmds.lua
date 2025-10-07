@@ -24,7 +24,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = fileType_group,
   pattern = { "*.cs" },
   callback = function()
-    ---@diagnostic disable-next-line: inject-field
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4
   end,
@@ -33,7 +32,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = fileType_group,
   pattern = { "^(cs)" },
   callback = function()
-    ---@diagnostic disable-next-line: inject-field
     vim.o.shiftwidth = 2
     vim.o.tabstop = 2
   end,

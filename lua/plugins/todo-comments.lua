@@ -4,6 +4,22 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  keys = {
+    {
+      "<leader>st",
+      function()
+        require("snacks").picker.todo_comments()
+      end,
+      desc = "Todo",
+    },
+    {
+      "<leader>sT",
+      function()
+        require("snacks").picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+      end,
+      desc = "Todo/Fix/Fixme",
+    },
+  },
   config = function()
     local todo_comments = require("todo-comments")
     local keymap = vim.keymap

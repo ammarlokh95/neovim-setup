@@ -1,6 +1,6 @@
 return {
   "goolord/alpha-nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
+  dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
@@ -21,10 +21,10 @@ return {
     }
     dashboard.section.buttons.val = {
       dashboard.button("a", "  New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("ff", "󰈞  Find file", ":Telescope find_files<CR>"),
+      dashboard.button("ff", "󰈞  Find file", ":lua require('snacks').picker.find_files()<CR>"),
       dashboard.button("r", "  Restore session", ":lua require('persistence').load()<CR>"),
-      dashboard.button("fr", "󰊄  Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("fw", "󰈬  Search word", ":Telescope live_grep<CR>"),
+      dashboard.button("fr", "󰊄  Recent files", ":lua require('snacks').picker.recent()<CR>"),
+      dashboard.button("fw", "󰈬  Search word", ":lua require('snacks').picker.grep()<CR>"),
       dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
     }
     local handle = io.popen("fortune")
