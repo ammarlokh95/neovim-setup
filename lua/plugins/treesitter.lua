@@ -39,6 +39,7 @@ return {
         "python",
         "regex",
         "scss",
+        "zig",
       },
       auto_install = false,
       ignore_install = {},

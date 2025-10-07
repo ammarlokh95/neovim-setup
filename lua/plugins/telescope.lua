@@ -43,7 +43,7 @@ return {
     {
       "<leader>en",
       function()
-        require("telescope.builtins").find_files({
+        require("telescope.builtin").find_files({
           cwd = vim.fn.stdpath("config"),
         })
       end,

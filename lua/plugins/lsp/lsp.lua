@@ -6,7 +6,7 @@ return {
     "artemave/workspace-diagnostics.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    "hrsh7th/cmp-nvim-lsp",
+    'saghen/blink.cmp'
     "nvim-tree/nvim-web-devicons",
     "ibhagwan/fzf-lua",
   },
@@ -15,8 +15,7 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
     local mason_tool_installer = require("mason-tool-installer")
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
     -- Mason setup
     mason.setup({
       registries = {
@@ -51,6 +50,7 @@ return {
     -- LSP configs
     vim.lsp.config("*", { capabilities = capabilities })
     vim.lsp.config("roslyn", {
+      on_attach = function() end,
       settings = {
         ["csharp|inlay_hints"] = {
           csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -58,6 +58,11 @@ return {
         },
         ["csharp|code_lens"] = {
           dotnet_enable_references_code_lens = true,
+        },
+        ["csharp|completion"] = {
+          dotnet_provide_regex_completions = true,
+          dotnet_show_completion_items_from_unimported_namespaces = true,
+          dotnet_show_name_completion_suggestions = true,
         },
       },
     })
