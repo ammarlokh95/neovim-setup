@@ -23,6 +23,13 @@ return {
     words = { enabled = true },
   },
   keys = {
+    {
+      "<leader>bd",
+      function()
+        Snacks.bufdelete.delete()
+      end,
+      desc = "Delete Buffer",
+    },
     -- Top Pickers & Explorer
     {
       "<leader><space>",
