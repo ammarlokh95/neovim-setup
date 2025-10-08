@@ -1,6 +1,9 @@
 {
     "diagnostics.disable": [
-        "need-check-nil"
+        "need-check-nil",
         "deprecated"
+    ],
+    "diagnostics.globals": [
+        "vim"
     ]
 }
