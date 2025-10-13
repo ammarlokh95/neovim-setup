@@ -107,12 +107,12 @@ return {
             lang_to_formatters = {},
           },
         },
-        csharpier = {
-          inherit = false,
-          command = "csharpier",
-          args = { "format", "$FILENAME", "--write-stdout" },
-          stdin = true,
-        },
+        -- csharpier = {
+        --   inherit = false,
+        --   command = "csharpier",
+        --   args = { "format", "$FILENAME", "--write-stdout" },
+        --   stdin = true,
+        -- },
       },
     }
 
