@@ -47,6 +47,11 @@ vim.api.nvim_create_autocmd("FileType", {
       event = "LspProgress",
       pattern = "*",
     })
+    vim.api.nvim_clear_autocmds({
+      group = "lualine_lsp_progress",
+      event = "LspProgress",
+      pattern = "*",
+    })
   end,
 })
 -- close some filetypes with <q>
