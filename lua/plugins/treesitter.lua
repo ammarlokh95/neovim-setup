@@ -40,6 +40,7 @@ return {
         "regex",
         "scss",
         "zig",
+        "razor",
       },
       auto_install = false,
       ignore_install = {},

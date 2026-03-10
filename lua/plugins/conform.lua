@@ -57,6 +57,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         html = { "prettier" },
+        htmlangular = { "prettier" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         md = { "prettier" },

@@ -23,6 +23,7 @@ return {
         "github:Crashdummyy/mason-registry",
       },
     })
+
     mason_lspconfig.setup({
       ensure_installed = {
         "angularls",
