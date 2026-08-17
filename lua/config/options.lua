@@ -34,15 +34,6 @@ opt.cursorlineopt = "number"
 
 opt.scrolloff = 8
 
-vim.g.autoformat = true
-
-vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
-
-vim.g.lazygit_config = true
-
--- Hide deprecation warnings
-vim.g.deprecation_warnings = false
-
 -- Show the current document symbols location from Trouble in lualine
 vim.g.trouble_lualine = true
 

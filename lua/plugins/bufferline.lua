@@ -27,11 +27,10 @@ return {
     },
   },
   config = function(_, opts)
+    -- A second setup() call replaces the config wholesale rather than merging,
+    -- so the highlights have to go into the same call as `options`.
+    opts.highlights = require("rose-pine.plugins.bufferline")
     require("bufferline").setup(opts)
-
-    -- Set up bufferline with custom highlights
-    local highlights = require("rose-pine.plugins.bufferline")
-    require("bufferline").setup({ highlights = highlights })
 
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {

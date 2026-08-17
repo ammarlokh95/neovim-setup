@@ -1,15 +1,30 @@
+-- `epwalsh/obsidian.nvim` is archived (last release v3.9.0, July 2024). This is
+-- the maintained community fork.
+--
+-- Two things changed with the move:
+--   * commands are now `:Obsidian <subcommand>`. The old `ObsidianToday` style
+--     names still work while `legacy_commands` is true, but that option goes
+--     away in 4.0.0, so they are spelled the new way below.
+--   * the `mappings` option is deprecated and has no effect. `<CR>`
+--     (smart_action) and `]o` / `[o` (next/prev link) are now buffer-local
+--     defaults in vault notes -- set `vim.g.obsidian_default_keymap = false` to
+--     turn those off. Note `]o` shadows the treesitter-textobjects loop motion
+--     inside vault notes.
+--
+-- `date_format` / `time_format` still accept strftime as well as moment.js
+-- tokens, so the formats below are unchanged.
 return {
-  "epwalsh/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = "markdown",
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
   },
   opts = {
+    legacy_commands = false,
+
     workspaces = {
       {
         name = "personal",
@@ -54,51 +69,30 @@ return {
       end
       return tostring(os.time()) .. "-" .. suffix
     end,
-    -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
-    -- way then set 'mappings = {}'.
-    mappings = {
-      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-      ["gf"] = {
-        action = function()
-          return require("obsidian").util.gf_passthrough()
-        end,
-        opts = { noremap = false, expr = true, buffer = true },
-      },
-      -- Toggle check-boxes.
-      ["<leader>ch"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
-      },
-      -- Smart action depending on context, either follow link or toggle checkbox.
-      ["<cr>"] = {
-        action = function()
-          return require("obsidian").util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
-    },
   },
   keys = {
     { "<leader>ol", ":lua require('obsidian')<cr>", desc = "Load obsidian.nvim" },
-    { "<leader>ond", "<cmd>ObsidianToday<cr>", desc = "Create a new daily note" },
+    { "<leader>ond", "<cmd>Obsidian today<cr>", desc = "Create a new daily note" },
     {
       "<leader>onn",
       function()
         local title = vim.fn.input("Enter note title: ")
-        vim.cmd("set ma")
-        vim.cmd("ObsidianNewFromTemplate " .. title .. "<cr>")
+        if title == "" then
+          return
+        end
+        vim.cmd("Obsidian new_from_template " .. title)
       end,
       desc = "Create a new note from template",
     },
-    { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Open a new daily note" },
-    { "<leader>ow", "<cmd>ObsidianWorkspace work<cr>", desc = "Obsidian work workspace" },
-    { "<leader>op", "<cmd>ObsidianWorkspace personal<cr>", desc = "Obsidian personal workspace" },
-    { "<leader>off", "<cmd>ObsidianSearch<cr>", desc = "Search obsidian notes" },
-    { "<leader>oft", "<cmd>ObsidianTags<cr>", desc = "Search obsidian notes for tag" },
-    { "<leader>oe", "<cmd>ObsidianExtractNote<cr>", mode = "x", desc = "Extract note" },
-    { "<leader>o>", "<cmd>ObsidianLink<cr>", mode = "x", desc = "Search selected and link note" },
-    { "<leader>o]", "<cmd>ObsidianFollowLink<cr>", desc = "Follow a note reference" },
+    { "<leader>od", "<cmd>Obsidian dailies<cr>", desc = "Open a new daily note" },
+    { "<leader>ow", "<cmd>Obsidian workspace work<cr>", desc = "Obsidian work workspace" },
+    { "<leader>op", "<cmd>Obsidian workspace personal<cr>", desc = "Obsidian personal workspace" },
+    { "<leader>off", "<cmd>Obsidian search<cr>", desc = "Search obsidian notes" },
+    { "<leader>oft", "<cmd>Obsidian tags<cr>", desc = "Search obsidian notes for tag" },
+    { "<leader>oe", "<cmd>Obsidian extract_note<cr>", mode = "x", desc = "Extract note" },
+    { "<leader>o>", "<cmd>Obsidian link<cr>", mode = "x", desc = "Search selected and link note" },
+    { "<leader>o]", "<cmd>Obsidian follow_link<cr>", desc = "Follow a note reference" },
+    -- Was the `mappings` entry for `<leader>ch`.
+    { "<leader>ch", "<cmd>Obsidian toggle_checkbox<cr>", desc = "Toggle checkbox" },
   },
 }

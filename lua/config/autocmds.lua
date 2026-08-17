@@ -18,22 +18,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Set default options for c# files
-local fileType_group = vim.api.nvim_create_augroup("filetype_group", { clear = true })
+-- Set default options for c# files. Everything else keeps the 2-space defaults
+-- from config/options.lua.
+--
+-- A second autocmd here used to try to reset the width to 2 with the pattern
+-- `^(.cs)|^(.razor)`. Autocmd patterns are file globs, not regexes, so it never
+-- matched anything; it also set the options globally rather than per-buffer,
+-- which would have fought with the autocmd above.
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = fileType_group,
+  group = vim.api.nvim_create_augroup("filetype_group", { clear = true }),
   pattern = { "*.cs", "*.razor" },
   callback = function()
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4
-  end,
-})
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = fileType_group,
-  pattern = { "^(.cs)|^(.razor)" },
-  callback = function()
-    vim.o.shiftwidth = 2
-    vim.o.tabstop = 2
   end,
 })
 
