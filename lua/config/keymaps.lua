@@ -104,10 +104,10 @@ map.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  local count = next and 1 or -1
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    vim.diagnostic.jump({ count = count, severity = severity, float = true })
   end
 end
 map.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
@@ -121,14 +121,17 @@ map.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- stylua: ignore start
 
 -- toggle options
-map.set("n", "<leader>uf", function() vim.format.toggle() end, { desc = "Toggle Auto Format (Global)" })
-map.set("n", "<leader>us", function() vim.toggle("spell") end, { desc = "Toggle Spelling" })
-map.set("n", "<leader>uw", function() vim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map.set("n", "<leader>ud", function() vim.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
-if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-  map.set( "n", "<leader>uh", function() vim.toggle.inlay_hints() end, { desc = "Toggle Inlay Hints" })
-end
-map.set("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
+-- `vim.format` / `vim.toggle` are LazyVim APIs and do not exist in Neovim, so
+-- these are wired to snacks.nvim and to the flag conform's format_on_save reads.
+map.set("n", "<leader>uf", function()
+  vim.g.disable_autoformat = not vim.g.disable_autoformat
+  vim.notify((vim.g.disable_autoformat and "Disabled" or "Enabled") .. " autoformat globally")
+end, { desc = "Toggle Auto Format (Global)" })
+Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+Snacks.toggle.option("wrap", { name = "Word Wrap" }):map("<leader>uw")
+Snacks.toggle.diagnostics():map("<leader>ud")
+Snacks.toggle.inlay_hints():map("<leader>uh")
+Snacks.toggle.treesitter():map("<leader>uT")
 
 -- quit
 map.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })

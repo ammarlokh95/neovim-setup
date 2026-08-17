@@ -51,7 +51,7 @@ return {
         end
         return {
           timeout_ms = 500,
-          lsp_fallback = true,
+          lsp_format = "fallback",
         }
       end,
       formatters_by_ft = {

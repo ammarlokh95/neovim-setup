@@ -3,7 +3,9 @@ return {
   version = "*",
   config = function()
     local toggle_term = require("toggleterm")
-    local sh = vim.fn.has("win32") and "pwsh" or vim.os.shell
+    -- `vim.fn.has()` returns 0/1, and 0 is truthy in Lua, so this used to always
+    -- pick pwsh; `vim.os.shell` never existed either.
+    local sh = vim.fn.has("win32") == 1 and "pwsh" or vim.o.shell
     toggle_term.setup({
       size = 20,
       open_mapping = "<leader>td",

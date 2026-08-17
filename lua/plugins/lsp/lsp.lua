@@ -82,19 +82,14 @@ return {
           [vim.diagnostic.severity.HINT] = signs.Hint,
           [vim.diagnostic.severity.INFO] = signs.Info,
         },
-      },
-      {
-        linehl = {
-          [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-          [vim.diagnostic.severity.WARN] = "WarnMsg",
-          [vim.diagnostic.severity.HINT] = "HintMsg",
-          [vim.diagnostic.severity.INFO] = "InfoMsg",
-        },
+        -- `linehl`/`numhl` belong under `signs`; they were previously passed as a
+        -- second positional table and so were silently ignored. `linehl` is left
+        -- off deliberately -- it colours the whole line.
         numhl = {
-          [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-          [vim.diagnostic.severity.WARN] = "WarnMsg",
-          [vim.diagnostic.severity.HINT] = "HintMsg",
-          [vim.diagnostic.severity.INFO] = "InfoMsg",
+          [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+          [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+          [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+          [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
         },
       },
     })
@@ -122,18 +117,24 @@ return {
         keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
         opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+        keymap.set("n", "[d", function()
+          vim.diagnostic.jump({ count = -1, float = true })
+        end, opts) -- jump to previous diagnostic in buffer
 
         opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+        keymap.set("n", "]d", function()
+          vim.diagnostic.jump({ count = 1, float = true })
+        end, opts) -- jump to next diagnostic in buffer
 
         opts.desc = "Show documentation for what is under cursor"
         keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", function()
-          vim.fn.printf("Restarting lsp...")
-          vim.lsp.stop_client(vim.lsp.get_clients())
+          vim.notify("Restarting lsp...")
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            client:stop()
+          end
           vim.cmd("edit")
         end, opts) -- mapping to restart lsp if necessary
 
@@ -148,7 +149,7 @@ return {
     vim.api.nvim_set_keymap("n", "<space>xw", "", {
       noremap = true,
       callback = function()
-        for _, client in ipairs(vim.lsp.buf_get_clients()) do
+        for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
           require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
         end
       end,

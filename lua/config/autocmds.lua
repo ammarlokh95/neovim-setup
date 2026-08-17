@@ -4,7 +4,7 @@
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+--  See `:help vim.hl.on_yank()`
 
 local function augroup(name)
   return vim.api.nvim_create_augroup(name, { clear = true })
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local fileType_group = vim.api.nvim_create_augroup("filetype_group", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = fileType_group,
-  pattern = { "*.cs" },
+  pattern = { "*.cs", "*.razor" },
   callback = function()
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 })
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = fileType_group,
-  pattern = { "^(cs)" },
+  pattern = { "^(.cs)|^(.razor)" },
   callback = function()
     vim.o.shiftwidth = 2
     vim.o.tabstop = 2
@@ -42,16 +42,17 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "cs" },
   callback = function()
-    vim.api.nvim_clear_autocmds({
-      group = "noice_lsp_progress",
-      event = "LspProgress",
-      pattern = "*",
-    })
-    vim.api.nvim_clear_autocmds({
-      group = "lualine_lsp_progress",
-      event = "LspProgress",
-      pattern = "*",
-    })
+    -- Both augroups are created lazily by their plugins (noice on first LSP
+    -- progress, lualine on the first lsp_status draw), so clearing them
+    -- unconditionally throws `Invalid 'group'` and aborts this whole FileType
+    -- chain on early `.cs` opens.
+    for _, group in ipairs({ "noice_lsp_progress", "lualine_lsp_progress" }) do
+      pcall(vim.api.nvim_clear_autocmds, {
+        group = group,
+        event = "LspProgress",
+        pattern = "*",
+      })
+    end
   end,
 })
 -- close some filetypes with <q>

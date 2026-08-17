@@ -1,5 +1,5 @@
 local map = vim.keymap
-opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true }
 -- remap leader key
 map.set("n", "<Space>", "", opts)
 vim.g.mapleader = " "
@@ -153,10 +153,10 @@ map.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  local count = next and 1 or -1
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    vim.diagnostic.jump({ count = count, severity = severity, float = true })
   end
 end
 map.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
@@ -170,14 +170,12 @@ map.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- stylua: ignore start
 
 -- toggle options
-map.set("n", "<leader>uf", function() vim.format.toggle() end, { desc = "Toggle Auto Format (Global)" })
-map.set("n", "<leader>us", function() vim.toggle("spell") end, { desc = "Toggle Spelling" })
-map.set("n", "<leader>uw", function() vim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map.set("n", "<leader>ud", function() vim.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
-if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-  map.set( "n", "<leader>uh", function() vim.toggle.inlay_hints() end, { desc = "Toggle Inlay Hints" })
-end
-map.set("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
+-- `vim.format` / `vim.toggle` are LazyVim APIs and do not exist in Neovim. No
+-- plugins are loaded under VSCode, so these use plain Neovim APIs.
+map.set("n", "<leader>us", function() vim.wo.spell = not vim.wo.spell end, { desc = "Toggle Spelling" })
+map.set("n", "<leader>uw", function() vim.wo.wrap = not vim.wo.wrap end, { desc = "Toggle Word Wrap" })
+map.set("n", "<leader>ud", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle Diagnostics" })
+map.set("n", "<leader>uh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 }) end, { desc = "Toggle Inlay Hints" })
 
 -- quit
 map.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
