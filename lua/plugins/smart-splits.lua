@@ -1,6 +1,19 @@
 return {
   "mrjones2014/smart-splits.nvim",
   lazy = false,
+  config = function(_, opts)
+    require("smart-splits").setup(opts)
+    -- herdr's resize amount is a fraction of the split (default step 0.05), not
+    -- cells. smart-splits passes default_amount (3) through, which jumps the
+    -- split straight to herdr's 90% limit, so use herdr's own step instead.
+    local ok, herdr = pcall(require, "smart-splits.mux.herdr")
+    if ok then
+      local resize_pane = herdr.resize_pane
+      herdr.resize_pane = function(direction, _)
+        return resize_pane(direction, 0.05)
+      end
+    end
+  end,
   opts = {
     -- Ignored buffer types (only while resizing)
     ignored_buftypes = {
