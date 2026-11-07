@@ -103,7 +103,11 @@ return {
     {
       "<C-l>",
       function()
-        require("smart-splits").move_cursor_right()
+        if vim.bo.filetype == "snacks_picker_list" then
+          vim.cmd("wincmd l")
+        else
+          require("smart-splits").move_cursor_right()
+        end
       end,
     },
     {

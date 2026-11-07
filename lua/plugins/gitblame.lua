@@ -9,5 +9,10 @@
 -- }
 return {
   "f-person/git-blame.nvim",
-  opts = { enabled = true, gitblame_schedule_event = "CursorHold", gitblame_clear_event = "CursorHoldI" },
+  config = function()
+    require("gitblame").setup({
+      enabled = false,
+    })
+    vim.keymap.set("n", "<leader>tgs", "<cmd>GitBlameToggle<CR>", { desc = "Toggle git blame" })
+  end,
 }
