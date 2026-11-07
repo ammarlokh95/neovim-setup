@@ -40,8 +40,6 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 vim.g.lazygit_config = true
 
-gitblame_enabled = 0
-
 -- Hide deprecation warnings
 vim.g.deprecation_warnings = false
 
